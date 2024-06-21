@@ -1,0 +1,8 @@
+function sendEmail(email,pdfFile){
+
+GmailApp.sendEmail(email,"File PDF Formulir Pendaftaran Sidang", "Terima kasih telah mengisi link Pendaftaran Sidang. Berikut file formulir pendaftaran sidang Anda. Terima kasih", { 
+  attachments: [pdfFile], 
+  name: 'TU Ilkom'
+});
+
+ }
