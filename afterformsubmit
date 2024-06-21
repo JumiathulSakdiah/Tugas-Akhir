@@ -1,0 +1,12 @@
+function afterFormSubmit(e) {
+ const info = e.namedValues; 
+ const pdfFile = createPDF(info);
+ const entryRow = e.range.getRow();
+ const gl = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Form Sidang");
+ gl.getRange(entryRow,16).setValue(pdfFile.getUrl());
+ gl.getRange(entryRow,17).setValue(pdfFile.getName());
+
+  sendEmail(e.namedValues['Email'][0], pdfFile);
+ Logger.log(info);
+ 
+ }
