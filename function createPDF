@@ -1,0 +1,34 @@
+function createPDF(info){
+
+  const pdfFolder = DriveApp.getFolderById("1hF8f2rK6N7tt-BfYs3Pbl4Yg0OhD-rZ0");
+  const tempFolder = DriveApp.getFolderById("1Dha8EkBSM7UfjBpbnNAYP7JtkK2oF4wG");
+  const templateDocs = DriveApp.getFileById("1qDlEP5fB71reHn8rVmQIF9yM8gFMLewFPuQedo5h5fg");
+
+  const newTempFile =  templateDocs.makeCopy(tempFolder);
+  const openDocs = DocumentApp.openById(newTempFile.getId()); 
+  const body = openDocs.getBody(); 
+
+// Logger.log(info['Nama Penyaji'][0]);
+  body.replaceText("{Nama}", info['Nama Penyaji'][0]);
+  body.replaceText("{NIM}", info['NIM Penyaji'][0]); 
+  body.replaceText("{Kontak}", info['Nomor Kontak (HP)'][0]);
+  body.replaceText("{Email}", info['Email'][0]); 
+  body.replaceText("{Pembimbing1}", info['Komisi Pembimbing 1 (Utama)'][0]);
+  body.replaceText("{Pembimbing2}", info['Komisi Pembimbing 2 (Anggota)'][0]);
+  body.replaceText("{Penguji1}", info['Penguji 1'][0]);
+  body.replaceText("{Penguji2}", info['Penguji 2'][0]);
+  body.replaceText("{JudulPenelitian}", info['Judul Penelitian'][0]);
+  body.replaceText("{Tgl}", info['Tanggal'][0]);
+  body.replaceText("{JamMulai}", info['Jam Mulai'][0]);
+  body.replaceText("{JamSelesai}", info['Jam Selesai'][0]);
+  body.replaceText("{Tempat}", info['Tempat'][0]);
+
+    openDocs.saveAndClose();
+
+
+  const blobPDF = newTempFile.getAs(MimeType.PDF);
+  const pdfFile = pdfFolder.createFile(blobPDF).setName(info['Nama Penyaji'][0] + "-" + info['NIM Penyaji'][0]);
+tempFolder.removeFile(newTempFile);
+return pdfFile;
+
+};
