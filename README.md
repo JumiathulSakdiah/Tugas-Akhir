@@ -1,1 +1,2 @@
 # Tugas-Akhir
+Ini adalah code project tugas akhir. Project ini menggunakan google apps script. Project ini adalah project sederhana untuk membuat auto send email setelah submit formulir di google form. form yang sudah di submit akan di auto generate menjadi file PDf yang kemudian akan langsung dikirim kan kepada user yang mengisi form. User disini adalah mahasiswa ilmu komputer IPB yang sudah memasuki tahapan semester akhir.
